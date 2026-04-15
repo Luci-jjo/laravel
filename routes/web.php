@@ -14,26 +14,14 @@ use App\Http\Middleware\LogAcessoMiddleware;
 */
 
 Route::get('/', [App\Http\Controllers\Principal::class, 'principal']);
-Route::get('/contato', [App\Http\Controllers\Contato::class, 'contato']);
-
-//ALUNO
-
-Route::get('/aluno', [App\Http\Controllers\Aluno::class, 'aluno']);
-Route::get('/aluno/login', [App\Http\Controllers\Aluno::class, 'aluno_login']);
-Route::get('/aluno/logout', [App\Http\Controllers\Aluno::class, 'aluno_logout']);
-Route::get('/aluno/consultar-nota', [App\Http\Controllers\Aluno::class, 'consultar_nota']);
-Route::get('/aluno/horario-do-curso', [App\Http\Controllers\Aluno::class, 'horario_do_curso']);
-Route::get('/aluno/vida-academica', [App\Http\Controllers\Aluno::class, 'vida_academica']);
-Route::get('/aluno/emitir-documentos', [App\Http\Controllers\Aluno::class, 'emitir_documentos']);
-
-//PROFESSOR
-
-Route::get('/professor', [App\Http\Controllers\Professor::class, 'professor']);
-Route::get('/professor/login', [App\Http\Controllers\Professor::class, 'professor_login']);
-Route::get('/professor/logout', [App\Http\Controllers\Professor::class, 'professor_logout']);
-Route::get('/professor/lancar-nota', [App\Http\Controllers\Professor::class, 'lancar_nota']);
-Route::get('/professor/horario-do-curso', [App\Http\Controllers\Professor::class, 'grade_de_aula']);
-Route::get('/professor/vida-academica', [App\Http\Controllers\Professor::class, 'vida_academica']);
 
 
+
+Route::prefix('/aluno')->group(function(){
+    Route:: get('/index', [App\Http\Controllers\AlunoController::class, 'index'])->name('AlunoController.index');
+    Route::post('/adicionar', [App\Http\Controllers\AlunoController::class, 'adicionar'])->name('AlunoController.adicionar');
+    Route::post('/remover', [App\Http\Controllers\AlunoController::class, 'remover'])->name('AlunoController.remover');
+    Route::post('/atualizar', [App\Http\Controllers\AlunoController::class, 'atualizar'])->name('AlunoController.atualizar');
+    Route::get('/consultar', [App\Http\Controllers\AlunoController::class, 'consultar'])->name('AlunoController.consultar');
+});
 
