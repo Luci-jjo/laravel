@@ -35,5 +35,10 @@ Route::get('/professor/lancar-nota', [App\Http\Controllers\Professor::class, 'la
 Route::get('/professor/horario-do-curso', [App\Http\Controllers\Professor::class, 'grade_de_aula']);
 Route::get('/professor/vida-academica', [App\Http\Controllers\Professor::class, 'vida_academica']);
 
-
-
+Route::prefix('/aluno')->group(function(){
+    Route::get('/index', [App\Http\Controllers\AlunoController::class, 'index'])->name('aluno.index');
+    Route::post('/add', [App\Http\Controllers\AlunoController::class, 'add'])->name('aluno.add');
+    Route::post('/remove', [App\Http\Controllers\AlunoController::class, 'remove'])->name('aluno.remove');
+    Route::post('/edit', [App\Http\Controllers\AlunoController::class, 'edit'])->name('aluno.edit');
+    Route::get('/list', [App\Http\Controllers\AlunoController::class, 'list'])->name('aluno.list');
+}); 
